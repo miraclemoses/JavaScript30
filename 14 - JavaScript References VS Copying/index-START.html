@@ -9,28 +9,48 @@
 
   <script>
     // start with strings, numbers and booleans
+    const yourinfo = {
+      name: 'peace',
+      age: 22
+    };
+
+    const myinfo = {
+      name: 'miracle',
+      age: 26
+    
+    };
+    const info = [myinfo, yourinfo];
+    
+    info.forEach(item => {
+      console.groupCollapsed(`${item.name}`)
+      console.log(`${item.age}`);
+      console.groupEnd(`${item.name}`)
+    });
+    console.table(info);
+    
 
     // Let's say we have an array
     const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
 
     // and we want to make a copy of it.
-
+    let newset = players
     // You might think we can just do something like this:
-
+    console.log(newset)
     // however what happens when we update that array?
-
+    newset[1] = 'miracle'
     // now here is the problem!
-
+    console.log(players)
     // oh no - we have edited the original array too!
 
     // Why? It's because that is an array reference, not an array copy. They both point to the same array!
 
     // So, how do we fix this? We take a copy instead!
-
+    newset = players.slice();
+    
     // one way
-
+    console.log(newset)
     // or create a new array and concat the old one in
-
+    
     // or use the new ES6 Spread
 
     // now when we update it, the original one isn't changed
@@ -44,13 +64,29 @@
     };
 
     // and think we make a copy:
-
+    const dev = Object.assign({}, person, { name: 'miracle', age: 28});
+    console.table(dev)
     // how do we take a copy instead?
 
     // We will hopefully soon see the object ...spread
 
     // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
-
+    const wes = {
+      name: 'wes',
+      age: 22,
+      social: {
+        twitter: '@wes',
+        faceebook: '@wesbro'
+      }
+    
+    };
+    
+    const dev2 = Object.assign({}, wes);
+    console.log(dev2);
+    wes.name = 'miracle';
+    
+    const dev3 = JSON.parse(JSON.stringify(wes));
+    console.log(dev3)
   </script>
 
 </body>
